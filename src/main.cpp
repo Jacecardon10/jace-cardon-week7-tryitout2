@@ -2,6 +2,48 @@
 #include <cmath> // for abs()
 using namespace std;
 
+class Polynomial {
+public:
+    int a = 0;
+    int b = 0;
+    int c = 0;
+    
+    Polynomial operator+(Polynomial other) {
+        other.a += a;
+        other.b += b;
+        other.c += c;
+
+        return *this;
+    }
+
+    Polynomial operator-(Polynomial other) {
+        a -= other.a;
+        b -= other.b;
+        c -= other.c;
+
+        return *this;
+	}
+    
+    friend ostream& operator <<(ostream& os, Polynomial& p) {
+
+        os << p.a << "x^2 " << "+ " << p.b << "x " << "+ " << p.c << endl;
+        return os;
+    }
+
+    friend istream& operator >> (istream& is, Polynomial& p){
+       
+        cout << "Enter coefficient a (for x^2): ";
+        is >> p.a;
+        cout << "Enter coefficient b (for x): ";
+        is >> p.b;
+        cout << "Enter coefficient c (constant term): ";
+        is >> p.c;
+
+		return is;
+	}
+};
+
+
 int main() {
     Polynomial p1, p2;
 
